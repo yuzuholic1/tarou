@@ -33,13 +33,13 @@ export const notificationSound = {
 }
 
 export const defaultWidget = [
-  { key: 'StoneCount', name: '抽卡资源', visible: true },
-  { key: 'Status', name: '点数资源', visible: true },
-  { key: 'Event', name: '活动信息', visible: true },
-  { key: 'TreasureMonitor', name: '素材监控', visible: true },
-  { key: 'DailyCost', name: '每日统计', visible: true },
-  { key: 'SkipQuest', name: '扫荡副本', visible: true },
-  { key: 'Sampo', name: '探险队', visible: true },
+  { key: 'StoneCount', name: 'Draw Resources', visible: true },
+  { key: 'Status', name: 'Points', visible: true },
+  { key: 'Event', name: 'Event Info', visible: true },
+  { key: 'TreasureMonitor', name: 'Material Tracker', visible: true },
+  { key: 'DailyCost', name: 'Daily Usage', visible: true },
+  { key: 'SkipQuest', name: 'Skip Quests', visible: true },
+  { key: 'Sampo', name: 'Advyrnturers', visible: true },
 ]
 
 export const defaultCombatPanelSetting: CombatPanelSetting = {
@@ -103,8 +103,8 @@ export const defaultCombatPanelSetting: CombatPanelSetting = {
 }
 
 export const NPC_AROUSAL_FORM: Record<string, string> = {
-  1: '平衡',
-  2: '攻击',
-  3: '防御',
-  4: '连击',
+  1: 'Balanced',
+  2: 'Attack',
+  3: 'Defense',
+  4: 'Multiattack',
 }

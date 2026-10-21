@@ -15,15 +15,15 @@ function handleClick(quest: typeof skipQuest.value.list[number]) {
     <template #header>
       <div flex justify-between>
         <div>
-          扫荡副本
+          Quest Skip
         </div>
-        <el-tooltip v-if="skipQuest.updateTime" content="最后更新时间" placement="top">
+        <el-tooltip v-if="skipQuest.updateTime" content="Last updated" placement="top">
           {{ formatEventDate(skipQuest.updateTime) }}
         </el-tooltip>
       </div>
     </template>
     <template v-if="skipQuest.list.length">
-      <el-alert v-if="skipQuest.list.every(item => item.limitedCount === 0)" title="讨伐次数已达到上限" type="success" :center="true" :closable="false" />
+      <el-alert v-if="skipQuest.list.every(item => item.limitedCount === 0)" title="All clear limits reached" type="success" :center="true" :closable="false" />
       <div v-else grid grid-cols-4 gap-10px>
         <div v-for="quest in skipQuest.list" :key="quest.questId" relative cursor-pointer @click="handleClick(quest)">
           <div v-if="quest.limitedCount === 0" class="absolute h-full w-full fc bg-black/40">
@@ -33,6 +33,6 @@ function handleClick(quest: typeof skipQuest.value.list[number]) {
         </div>
       </div>
     </template>
-    <el-alert v-else title="请先获取扫荡副本信息" type="info" :center="true" :closable="false" />
+    <el-alert v-else title="Open the Quest Skip page first" type="info" :center="true" :closable="false" />
   </el-card>
 </template>

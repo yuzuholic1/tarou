@@ -57,7 +57,7 @@ export const localNpcList = useWebExtensionStorage<BuildNpc[]>('localNpcList', [
 export const markedUserList = useWebExtensionStorage<MarkedUser[]>('markedUserList', [])
 
 // Artifact
-export const language = useWebExtensionStorage<'zh' | 'ja'>('language', 'zh')
+export const language = useWebExtensionStorage<'en' | 'ja'>('language', 'en')
 export const artifactList = useWebExtensionStorage<Artifact[]>('artifactList', [])
 export const artifactRule = useWebExtensionStorage<ArtifactRule>('artifactRule', defaultArtifactRule)
 export const artifactUsage = useWebExtensionStorage<Partial<ArtifactUsage>>('artifactUsage', {})

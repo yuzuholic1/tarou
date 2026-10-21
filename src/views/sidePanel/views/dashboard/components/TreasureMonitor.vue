@@ -7,7 +7,7 @@ import { displayList } from '~/logic'
     <div grid grid-cols-5 gap-7px>
       <el-tooltip
         v-for="item in displayList" :key="item.itemKey"
-        :content="`目标: ${item.limit}`"
+        :content="`Goal: ${item.limit}`"
         :disabled="!item.limit"
         placement="top"
       >

@@ -32,7 +32,7 @@ export function createNotification(options: NotificationOptions) {
     message,
     silent: true,
     type: 'basic',
-    title: '通知',
+    title: 'Notification',
   }, () => {
     if (chrome.runtime.lastError) {
       chrome.notifications.create({
@@ -40,7 +40,7 @@ export function createNotification(options: NotificationOptions) {
         message,
         silent: true,
         type: 'basic',
-        title: '通知',
+        title: 'Notification',
       })
     }
   })
@@ -52,7 +52,7 @@ export function checkActionTrigger(action?: Action) {
 
   const key = `${action.type}_${action.id}`
   if (actionTriggerList.value.includes(key))
-    createNotification({ message: '动作触发提示', sound: 'tip', iconUrl: getActionIcon(action) })
+    createNotification({ message: 'Action triggered', sound: 'tip', iconUrl: getActionIcon(action) })
 }
 
 export function toggleActionTrigger(action: Action) {

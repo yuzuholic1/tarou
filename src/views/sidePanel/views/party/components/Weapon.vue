@@ -24,17 +24,17 @@ function getSkillAlias(weapon: BuildWeapon) {
   return hitWeaponSkill.list.find(skill => description.includes(skill.comment) || description.includes(skill.comment_en))?.alias
 }
 
-// 判断是不是U武(13)
+// Is it an Ultima weapon (series 13)
 function isUW(weapon: BuildWeapon) {
   return weapon.seriesId === 13
 }
 
-// 判断是不是法武(3)
+// Is it a Dark Opus weapon (series 3)
 function isFW(weapon: BuildWeapon) {
   return weapon.seriesId === 3
 }
 
-// 判断是不是法武(3)或者U武(13)
+// Is it a Dark Opus (3) or Ultima (13) weapon
 function isFWorUW(weapon: BuildWeapon) {
   return isFW(weapon) || isUW(weapon)
 }

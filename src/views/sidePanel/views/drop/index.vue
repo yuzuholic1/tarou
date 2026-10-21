@@ -12,7 +12,7 @@ function toggleVisible(questId: string) {
   const hit = questConfig.value.find(q => q.questId === questId)
   if (hit) {
     if (!hit.visible && questConfig.value.filter(q => q.visible).length >= 7)
-      return ElMessage.info('最多选择7个副本')
+      return ElMessage.info('Select up to 7 quests')
 
     hit.visible = !hit.visible
   }
@@ -23,20 +23,20 @@ function handleQuery() {
     return
 
   if (!code.value || !userInfo.value.uid) {
-    ElMessage.error('请先获取引继码和玩家ID')
+    ElMessage.error('Get your transfer code and player ID first')
     return
   }
 
   const questIds = questConfig.value.filter(q => q.visible).map(q => q.questId)
   if (questIds.length === 0) {
-    console.log('还未收藏副本')
+    console.log('No favorite quests yet')
     return
   }
   loading.value = true
   listDrop(questIds).then(({ data }) => {
     questData.value = data
   }).catch(() => {
-    ElMessage.error('请求失败')
+    ElMessage.error('Request failed')
   }).finally(() => {
     loading.value = false
   })
@@ -77,14 +77,14 @@ onMounted(() => {
     <div sticky inset-x-0 top-0 z-999 h-10 flex items-center justify-between rounded bg-neutral-8 px-4 text-base>
       <div fc gap-2>
         <TheButton v-if="isManage" :loading="loading" icon="material-symbols:arrow-back-ios" @click="goBack">
-          返回
+          Back
         </TheButton>
         <TheButton v-else :loading="loading" icon="carbon:document-download" @click="manageQuest">
-          管理副本
+          Manage Quests
         </TheButton>
       </div>
       <TheButton v-if="!isManage" icon="carbon:update-now" :loading="loading" @click="handleQuery">
-        刷新
+        Refresh
       </TheButton>
     </div>
 
@@ -113,7 +113,7 @@ onMounted(() => {
         <div v-else my-10px fc flex-wrap gap-10px>
           <QuestCard v-for="quest in questData" :key="quest.questId" :data="quest" />
           <div v-if="questConfig.filter(q => q.visible).length === 0" mt-10px h-50px text-center text-xl>
-            还未收藏副本
+            No favorite quests yet
           </div>
         </div>
       </template>

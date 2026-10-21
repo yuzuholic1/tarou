@@ -11,9 +11,9 @@ const eventInfo = computed(() => eventList.value.find(event => event.type === 'a
     <template #header>
       <div flex justify-between>
         <div>
-          四象降临(<span>{{ eventInfo.count.toLocaleString() }}</span>)
+          Rise of the Beasts (<span>{{ eventInfo.count.toLocaleString() }}</span>)
         </div>
-        <el-tooltip content="最后更新时间" placement="top">
+        <el-tooltip content="Last updated" placement="top">
           {{ formatEventDate(eventInfo.updateTime) }}
         </el-tooltip>
       </div>
@@ -24,7 +24,7 @@ const eventInfo = computed(() => eventList.value.find(event => event.type === 'a
         <div v-for="reward in eventInfo.additional.defeatReward" :key="reward.key" fc flex-col text-12px>
           <img w-52px :src="getOfficialUrl(`/sp/assets/item/event/defeat/${reward.key}/s/5000.jpg`)">
           <div>
-            {{ `${reward.value}枚` }}
+            {{ `${reward.value}` }}
           </div>
         </div>
       </div>

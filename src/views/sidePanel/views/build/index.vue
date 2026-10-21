@@ -13,7 +13,7 @@ const queryParams = ref({
 })
 
 const buildList = ref<BuildItem[]>([])
-const msg = ref('进入副本前自动获取副本ID')
+const msg = ref('Quest ID is captured automatically before entering a quest')
 
 const ATTR_OPTIONS = [1, 2, 3, 4, 5, 6]
 const VIEWED_BUILD_MEMO_EXPIRE_MS = 7 * 24 * 60 * 60 * 1000
@@ -22,7 +22,7 @@ const handleQuery = useDebounceFn(() => {
   loading.value = true
   listBuild({ questId: buildQuestId.value, npcFilter: buildNpcFilter.value, ...queryParams.value }).then(({ data }) => {
     buildList.value = data.list
-    msg.value = buildList.value.length === 0 ? '未找到匹配的数据' : ''
+    msg.value = buildList.value.length === 0 ? 'No matching data found' : ''
   }).finally(() => {
     loading.value = false
   })
@@ -81,7 +81,7 @@ function checkDetail(build: BuildItem) {
 <template>
   <div sticky inset-x-0 top-0 z-999 grid rounded bg-neutral-8 p-2 text-base>
     <div flex items-center justify-between>
-      <el-input v-model="buildQuestId" placeholder="副本ID" size="small" style="width: 60px;" />
+      <el-input v-model="buildQuestId" placeholder="Quest ID" size="small" style="width: 60px;" />
       <div fc gap-2>
         <button
           class="relative rounded px-2 text-12px ring-1 ring-neutral-6"
@@ -97,7 +97,7 @@ function checkDetail(build: BuildItem) {
           class="relative rounded px-2 text-12px ring-1 ring-neutral-6"
           @click="checkWeapon"
         >
-          辉耀
+          Radiant
           <div v-if="queryParams.noNbWeapon" class="bg-black/70" absolute inset-0 fc rounded>
             <div text-15px text-red class="i-mynaui:ban" />
           </div>
@@ -107,14 +107,14 @@ function checkDetail(build: BuildItem) {
           class="relative rounded px-2 text-12px ring-1 ring-neutral-6"
           @click="checkReload"
         >
-          刷新
+          Refresh
           <div v-if="queryParams.noReload" class="bg-black/70" absolute inset-0 fc rounded>
             <div text-15px text-red class="i-mynaui:ban" />
           </div>
         </button>
 
         <TheButton icon="carbon:search" :loading="loading" @click="handleQuery">
-          查询
+          Search
         </TheButton>
       </div>
     </div>
@@ -130,7 +130,7 @@ function checkDetail(build: BuildItem) {
           : 'ring-1 ring-neutral-6'"
         @click="checkAttr(item)"
       >
-        <img :src="getOfficialUrl(`/sp/artifact/ui/icon/icn_type_${item}.png`)" alt="属性图标" draggable="false" class="size-25px">
+        <img :src="getOfficialUrl(`/sp/artifact/ui/icon/icn_type_${item}.png`)" alt="Element icon" draggable="false" class="size-25px">
       </button>
     </div>
   </div>
@@ -138,7 +138,7 @@ function checkDetail(build: BuildItem) {
     <el-result v-if="msg" icon="info" :sub-title="msg" />
     <el-card v-for="data in buildList" :key="data.key" w-300px body-style="padding: 5px !important">
       <el-descriptions size="small" direction="vertical" :column="3" border>
-        <el-descriptions-item label="副本" label-width="60" :rowspan="2" align="center">
+        <el-descriptions-item label="Quest" label-width="60" :rowspan="2" align="center">
           <div relative>
             <img v-if="data.bossImage" h-44px w-44px :src="getBossImg('enemy', data.bossImage, 's')" @click="copy(data.key)">
             <div v-if="data.isSolo" class="absolute inset-x-0">
@@ -148,16 +148,16 @@ function checkDetail(build: BuildItem) {
             </div>
           </div>
         </el-descriptions-item>
-        <el-descriptions-item label="伤害" label-width="113" align="center">
+        <el-descriptions-item label="Damage" label-width="113" align="center">
           {{ data.damage }}
         </el-descriptions-item>
-        <el-descriptions-item label="操作时长/跑速" align="center">
+        <el-descriptions-item label="Time/Speed" align="center">
           {{ data.realTime }} / {{ data.realSpeed }}
         </el-descriptions-item>
-        <el-descriptions-item label="贡献" align="center">
+        <el-descriptions-item label="Honors" align="center">
           {{ data.point ? Math.floor(data.point).toLocaleString() : '-' }}
         </el-descriptions-item>
-        <el-descriptions-item label="回合数" align="center">
+        <el-descriptions-item label="Turns" align="center">
           {{ data.turn }}
         </el-descriptions-item>
       </el-descriptions>
@@ -167,7 +167,7 @@ function checkDetail(build: BuildItem) {
         </div>
 
         <TheButton :color="isDetailViewed(data.key) ? '#525252' : undefined" @click="checkDetail(data)">
-          详情
+          Details
         </TheButton>
       </div>
     </el-card>

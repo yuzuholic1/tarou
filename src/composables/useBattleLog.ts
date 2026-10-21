@@ -59,7 +59,7 @@ export function handleStartJson(data: BattleStartJson) {
     groupNum: cur.group_num,
   }))
 
-  // 更新肉鸽boss信息
+  // Update dungeon boss info
   dungeonInfo.value.bossInfo = data.is_arcarum3
     ? data.boss.param.map(b => ({
         imageId: b.cjs.split('_').at(1)!,
@@ -70,7 +70,7 @@ export function handleStartJson(data: BattleStartJson) {
 
   handleMainConditionInfo(boss.condition, leader.condition)
   recordRaidInfo(data)
-  // 处理开幕特动情况start
+  // Handle opening-move triggers (start)
   if (data.scenario)
     handleAttackResultJson('start', data as AttackResultJson)
 }
@@ -82,19 +82,19 @@ export function handleAttackResultJson(type: string, data: AttackResultJson, pay
   const scenario = data.scenario
   const isWin = scenario.some(item => item.cmd === 'win' && item.is_last_raid)
   if (isWin && notificationSetting.value.battleWin) {
-    createNotification({ message: `战斗结束`, sound: 'win' })
+    createNotification({ message: `Battle won`, sound: 'win' })
   }
 
   const isLose = scenario.some(item => item.cmd === 'lose')
   if (isLose && notificationSetting.value.battleLose)
-    createNotification({ message: `队伍全灭`, sound: 'lose' })
+    createNotification({ message: `Party wiped`, sound: 'lose' })
 
   const currentRaid = battleRecord.value.find(b => String(b.raid_id) === battleInfo.value.bossInfo?.battleId)
 
   if (!currentRaid)
     return
 
-  // 更新肉鸽多boss血量信息
+  // Update HP for multi-boss dungeon battles
   for (let i = 0; i < (dungeonInfo.value.bossInfo?.length || 0); i++) {
     const bossGauge = scenario.findLast(item => item.cmd === 'boss_gauge' && item.pos === i)
     if (bossGauge)
@@ -407,9 +407,9 @@ function recordRaidInfo(data: BattleStartJson) {
   const hitRecord = battleRecord.value.find(b => String(b.raid_id) === battleInfo.value.bossInfo?.battleId)
 
   if (hitRecord) {
-    // 更新刷新状态
+    // Reset the reload flag
     hitRecord.noReload = false
-    // 防止死亡事件没有捕获时，角色存活状态与实际不符
+    // Resync alive state in case a death event was missed
     for (const player of data.player.param) {
       const hitPlayer = hitRecord.player.find(p => p.pid === player.pid.split('_')[0])
       if (hitPlayer) {
@@ -429,17 +429,17 @@ function recordRaidInfo(data: BattleStartJson) {
       use_ability_count: 0,
       use_special_skill_count: 0,
       damage: {
-        total: { comment: '总计', value: 0 },
-        attack: { comment: '通常攻击&反击', value: 0 },
-        ability: { comment: '技能伤害', value: 0 },
-        special: { comment: '奥义伤害', value: 0 },
-        other: { comment: '其他', value: 0 },
+        total: { comment: 'Total', value: 0 },
+        attack: { comment: 'Normal Attacks & Counters', value: 0 },
+        ability: { comment: 'Skill Damage', value: 0 },
+        special: { comment: 'Charge Attack Damage', value: 0 },
+        other: { comment: 'Other', value: 0 },
       },
       damageTaken: {
-        total: { comment: '总计', value: 0 },
-        attack: { comment: '通常攻击&反击', value: 0 },
-        super: { comment: '特动', value: 0 },
-        other: { comment: '其他', value: 0 },
+        total: { comment: 'Total', value: 0 },
+        attack: { comment: 'Normal Attacks & Counters', value: 0 },
+        super: { comment: 'Special Attacks', value: 0 },
+        other: { comment: 'Other', value: 0 },
       },
       condition: {
         buff: mergeCondition(cur.condition),
@@ -521,7 +521,7 @@ function handleDamageStatistic(resultType: string, data: AttackResultJson | Batt
 
       const hitQuestSetting = questSetting.value.find(q => q.questId === currentRaid.quest_id)
       if (resultType === 'normal' && notificationSetting.value.pointReach && hitQuestSetting?.point && currentRaid.point! >= hitQuestSetting.point) {
-        createNotification({ message: '到线啦!!!', sound: 'warning' })
+        createNotification({ message: 'Honor target reached!', sound: 'warning' })
       }
     }
 
@@ -543,9 +543,9 @@ function handleDamageStatistic(resultType: string, data: AttackResultJson | Batt
           return pre
         }, 0)
 
-        // 记录连击数据
+        // Record multiattack data
         if (!action.effect) {
-        // 致死普攻如果不是ta就不记录
+        // Skip a killing normal attack unless it's a triple attack
           const nextAction = data.scenario![idx + 1]
           const isLastAttack = nextAction.cmd === 'normal_attack_end'
           const isTa = action.total_attack_num === 3
@@ -642,7 +642,7 @@ function handleDamageStatistic(resultType: string, data: AttackResultJson | Batt
     if (action.cmd === 'rematch')
       currentRaid.player.forEach(p => p.is_dead = false)
 
-    // 统计承伤
+    // Tally damage taken
     if (action.cmd === 'super' && action.target === 'player')
       processSuperScenario(currentRaid, action as SuperScenario)
     if (action.cmd === 'attack' && action.from === 'boss') {
@@ -670,7 +670,7 @@ function handleDamageStatistic(resultType: string, data: AttackResultJson | Batt
   })
   currentRaid.damage = damage.toLocaleString()
 
-  // 更新前排角色位置信息
+  // Update frontline character positions
   if (data.status?.formation)
     currentRaid.formation = data.status.formation.map(num => Number(num))
 }
@@ -785,7 +785,7 @@ function handleActionQueue(type: string, data: AttackResultJson, payload?: Resul
     }
 
     if (payload.ability_sub_param?.length === 2) {
-      // 忍者、魔战一技能ID
+      // Skill 1 IDs for Ninja and Runeslayer
       const NINJA_MAGIC = ['7030', '201531']
       for (let i = 0; i < 2; i++) {
         if (NINJA_MAGIC.includes(payload.ability_id)) {
@@ -876,7 +876,7 @@ function handleActionQueue(type: string, data: AttackResultJson, payload?: Resul
   const checkIndex = (type === 'normal' && dieIndex === -1) ? -2 : -1
   checkActionTrigger(currentRaid.actionQueue.at(checkIndex)?.actionList.at(-1))
 
-  // 更新技能列表
+  // Update the skill list
   const currentAbilityList = getAbilityList(data.status.ability)
   currentAbilityList.forEach((abi) => {
     const hit = currentRaid.abilityList.find(a => a.id === abi.id)

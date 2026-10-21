@@ -153,10 +153,10 @@ function changeStatus(statusId: number) {
 
     <div fc>
       <TheButton style="height: 30px" w-full @click="dungeonInfo.showStatusList = !dungeonInfo.showStatusList">
-        切换显示
+        Toggle View
       </TheButton>
       <TheButton style="height: 30px" w-full @click="openPopupWindow('DungeonMap')">
-        地图信息
+        Map Info
       </TheButton>
     </div>
   </div>

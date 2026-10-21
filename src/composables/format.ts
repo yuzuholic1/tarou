@@ -3,7 +3,7 @@ import type { BattleRecord } from 'extension'
 import dayjs from 'dayjs'
 import { userInfo } from '~/logic'
 
-// 将秒数转化为HH:mm:ss
+// Convert seconds to HH:mm:ss
 export function formatTime(seconds: number): string {
   if (seconds === 0)
     return ''
@@ -23,7 +23,7 @@ export function formatTime(seconds: number): string {
   }
 }
 
-// 将MM/DD HH:mm格式时间转化为时间戳
+// Convert an MM/DD HH:mm time string to a timestamp
 export function formatFinishTime(finishTime: string) {
   const currentYear = new Date().getFullYear()
   const [monthDay, time] = finishTime.split(' ')
@@ -39,7 +39,7 @@ export function formatFinishTime(finishTime: string) {
   return finishDate.valueOf()
 }
 
-// 将HH:mm:ss 格式时间转化为时间戳
+// Convert an HH:mm:ss time string to a timestamp
 export function formatRemainingTime(remaining_time: string): number {
   const [hours, minutes, seconds] = remaining_time.split(':').map(Number)
   const totalSeconds = hours * 3600 + minutes * 60 + seconds
@@ -66,10 +66,10 @@ export function formatEventDate(timestamp: number): string {
 
   let prefix = ''
   if (dayjs().subtract(1, 'day').isSame(dayjs(timestamp), 'day')) {
-    prefix = '昨天 '
+    prefix = 'Yesterday '
   }
   else if (dayjs().subtract(2, 'day').isSame(dayjs(timestamp), 'day')) {
-    prefix = '前天 '
+    prefix = '2 days ago '
   }
   else if (dayjs().isAfter(dayjs(timestamp), 'day')) {
     prefix = `${dayjs(timestamp).format('MM-DD')} `

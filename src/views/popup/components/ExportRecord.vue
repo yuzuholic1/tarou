@@ -17,8 +17,8 @@ async function exportToImg() {
     isSnapping.value = true
     const element = document.querySelector(`#record-container`)!
     const result = await useSnapdom(element)
-    await result.download({ scale: 1.5, type: 'png', filename: `战斗记录${Date.now()}`, backgroundColor: '#131313' })
-    ElMessage.success('保存成功')
+    await result.download({ scale: 1.5, type: 'png', filename: `battle-record-${Date.now()}`, backgroundColor: '#131313' })
+    ElMessage.success('Saved')
   }
   catch (error) {
     createNotification({ message: String(error) })
@@ -38,19 +38,19 @@ async function exportToImg() {
       <div flex flex-col gap-10px>
         <el-card w-300px body-style="padding: 5px !important">
           <el-descriptions size="small" direction="vertical" :column="3" border>
-            <el-descriptions-item label="副本" label-width="60" :rowspan="2" align="center">
+            <el-descriptions-item label="Quest" label-width="60" :rowspan="2" align="center">
               <img h-44px w-44px :src="getBossImg('enemy', buildRecord.bossImage!, 's')">
             </el-descriptions-item>
-            <el-descriptions-item label="伤害" label-width="113" align="center">
+            <el-descriptions-item label="Damage" label-width="113" align="center">
               {{ buildRecord.damage }}
             </el-descriptions-item>
-            <el-descriptions-item label="操作时长/跑速" align="center">
+            <el-descriptions-item label="Time/Speed" align="center">
               {{ buildRecord.realTime }} / {{ buildRecord.realSpeed }}
             </el-descriptions-item>
-            <el-descriptions-item label="贡献" align="center">
+            <el-descriptions-item label="Honors" align="center">
               {{ buildRecord.point ? Math.floor(buildRecord.point).toLocaleString() : '-' }}
             </el-descriptions-item>
-            <el-descriptions-item label="回合数" align="center">
+            <el-descriptions-item label="Turns" align="center">
               {{ buildRecord.turn }}
             </el-descriptions-item>
           </el-descriptions>
@@ -66,7 +66,7 @@ async function exportToImg() {
         <Summon :summons="deck.summons" />
       </div>
       <div v-else w-300px fc self-stretch text-15px>
-        未获取队伍信息
+        No party info yet
       </div>
     </div>
     <div v-if="buildRecord.detail" m-auto mt-20px w-610px>

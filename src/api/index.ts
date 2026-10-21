@@ -2,7 +2,7 @@ import type { BuildItem, DropInfo, StartJsonBoss, Stat } from 'api'
 import type { Quest } from 'extension'
 import request from './request'
 
-// 更新引继码
+// Update transfer code
 export function updateCode(data: { code: string }) {
   return request<{ code: string }>('/ext/code', {
     method: 'post',
@@ -10,7 +10,7 @@ export function updateCode(data: { code: string }) {
   })
 }
 
-// 发送掉落信息
+// Send drop info
 export function sendDropInfo(data: DropInfo) {
   return request('/ext/drop', {
     method: 'post',
@@ -18,7 +18,7 @@ export function sendDropInfo(data: DropInfo) {
   })
 }
 
-// 批量发送掉落信息
+// Send drop info in bulk
 export function sendMultiDropInfo(data: DropInfo[]) {
   return request('/ext/multiDrop', {
     method: 'post',
@@ -26,7 +26,7 @@ export function sendMultiDropInfo(data: DropInfo[]) {
   })
 }
 
-// 发送startJson中的boss信息
+// Send boss info from startJson
 export function sendBossInfo(data: StartJsonBoss) {
   return request('/ext/startJson', {
     method: 'post',
@@ -34,14 +34,14 @@ export function sendBossInfo(data: StartJsonBoss) {
   })
 }
 
-// 获取副本信息
+// Get quest info
 export function listQuest() {
   return request<{ data: (Omit<Quest, 'visible'> & { deprecated?: boolean })[] }>('/ext/quest', {
     method: 'get',
   })
 }
 
-// 获取掉落统计信息
+// Get drop statistics
 export function listDrop(questIds: string[]) {
   return request<{ data: Stat[] }>('/ext/stat', {
     method: 'post',
@@ -49,7 +49,7 @@ export function listDrop(questIds: string[]) {
   })
 }
 
-// 上传配置
+// Upload a build
 export function uploadBuild(data: any) {
   return request<{ key: string }>('/ext/build/upsert', {
     method: 'post',
@@ -57,7 +57,7 @@ export function uploadBuild(data: any) {
   })
 }
 
-// 查询配置列表
+// Query the build list
 export function listBuild(data: { questId: string, npcFilter: number[] }) {
   return request<{ data: { list: BuildItem[], total: number } }>('/ext/build/list', {
     method: 'post',
@@ -65,7 +65,7 @@ export function listBuild(data: { questId: string, npcFilter: number[] }) {
   })
 }
 
-// 查询配置详情
+// Query build details
 export function detailBuild(key: string, timestamp?: number) {
   const searchParams = new URLSearchParams({ key })
 
@@ -77,7 +77,7 @@ export function detailBuild(key: string, timestamp?: number) {
   })
 }
 
-// 上传用户插件配置
+// Upload user extension settings
 export function setConfig(data: any) {
   return request('/ext/config/set', {
     method: 'post',
@@ -85,7 +85,7 @@ export function setConfig(data: any) {
   })
 }
 
-// 查询用户插件配置
+// Query user extension settings
 export function getConfig() {
   return request<{ data: any }>('/ext/config/get', {
     method: 'post',

@@ -19,29 +19,29 @@ export function deepClone<T>(obj: T): T {
 }
 
 /**
- * 深度合并默认配置和用户配置
- * @param defaultConfig 默认配置
- * @param userConfig 用户当前配置
- * @returns 合并后的新配置
+ * Deep-merge the default config with the user config
+ * @param defaultConfig Default config
+ * @param userConfig User's current config
+ * @returns A new merged config
  */
 export function mergeConfig<T extends Record<string, any>>(defaultConfig: T, userConfig: Partial<T>): T {
   const result = {} as T
 
-  // 只遍历默认配置，构建结果对象
+  // Walk only the default config to build the result
   for (const key in defaultConfig) {
     const defaultValue = defaultConfig[key]
     const userValue = userConfig[key]
 
     if (isPlainObject(defaultValue) && isPlainObject(userValue)) {
-      // 如果都是对象，递归合并
+      // Both are objects: merge recursively
       result[key] = mergeConfig(defaultValue, userValue as any)
     }
     else if (userValue !== undefined) {
-      // 如果用户有这个值，使用用户的值
+      // Use the user value if present
       result[key] = userValue
     }
     else {
-      // 否则使用默认值
+      // Otherwise fall back to the default
       result[key] = defaultValue
     }
   }
@@ -50,7 +50,7 @@ export function mergeConfig<T extends Record<string, any>>(defaultConfig: T, use
 }
 
 /**
- * 检查是否为纯对象
+ * Check whether a value is a plain object
  */
 function isPlainObject(obj: any): obj is Record<string, any> {
   return obj !== null && typeof obj === 'object' && !Array.isArray(obj) && obj.constructor === Object

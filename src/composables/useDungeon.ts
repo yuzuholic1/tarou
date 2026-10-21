@@ -29,7 +29,7 @@ export function processDungeonActionScenario(scenarioList: DungeonActionScenario
       }))
     }
 
-    // 传送
+    // Warp
     if (scenario.action_type === 5) {
       dungeonInfo.value.currentNodeId = scenario.warp_node_id
       for (const nodeId of scenario.delete_node_ids ?? []) {
@@ -58,18 +58,18 @@ export function processDungeonActionScenario(scenarioList: DungeonActionScenario
       hitNode.specialIncidentId = scenario.special_incident_id
     }
 
-    // 获得导本
+    // Tome obtained
     if (scenario.action_type === 400) {
       const statusIds = scenario.status_list?.map(s => s.status_id) ?? []
       addDungeonStatus(statusIds)
     }
 
-    // 选择导本
+    // Tome selected
     if (scenario.action_type === 401) {
       updateDungeonStatus(scenario.status_list)
     }
 
-    // 删除导本
+    // Tome removed
     if (scenario.action_type === 402) {
       for (const status of scenario.status_list ?? []) {
         const hitUserStatus = dungeonInfo.value.statusList?.find(s => s.statusId === status.status_id)

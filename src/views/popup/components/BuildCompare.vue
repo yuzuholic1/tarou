@@ -96,12 +96,12 @@ const showDamage = computed(() => {
     return
 
   return [{
-    label: '预测伤害',
+    label: 'Est. Damage',
     before: deckInfo.value[0]!.leader.normalDamage.toLocaleString(),
     after: deckInfo.value[1]!.leader.normalDamage.toLocaleString(),
     diff: deckInfo.value[1]!.leader.normalDamage - deckInfo.value[0]!.leader.normalDamage,
   }, {
-    label: '克属伤害',
+    label: 'Advantage Damage',
     before: deckInfo.value[0]!.leader.advantageDamage.toLocaleString(),
     after: deckInfo.value[1]!.leader.advantageDamage.toLocaleString(),
     diff: deckInfo.value[1]!.leader.advantageDamage - deckInfo.value[0]!.leader.advantageDamage,
@@ -114,7 +114,7 @@ const showDamage = computed(() => {
     <div flex justify-center gap-10px>
       <div v-for="deck, index in deckInfo" :key="index" min-h-650px w-320px flex flex-col items-center justify-between gap-10px>
         <div h-30px w-200px fc cursor-pointer rounded opacity-50 :class="{ 'text-amber opacity-100! ring-1 ring-amber': currentIndex === index }" @click="currentIndex = index">
-          当前配置
+          Current Setup
         </div>
         <div w-320px fc flex-1 flex-col gap-10px rounded-xl p-10px ring-1 ring-neutral-5>
           <template v-if="deck">

@@ -30,9 +30,9 @@ onMounted(() => {
   <el-alert :closable="false">
     <template #title>
       <div w-268px>
-        <el-tooltip content="可点击或拖拽进行设置" placement="top-start">
+        <el-tooltip content="Click or drag to configure" placement="top-start">
           <span>
-            主页设置
+            Home Layout
           </span>
         </el-tooltip>
       </div>
@@ -56,30 +56,30 @@ onMounted(() => {
     <template #title>
       <div w-268px flex items-center justify-between gap-2>
         <div>
-          弹窗通知
+          Notifications
         </div>
         <VolumeControl />
       </div>
     </template>
   </el-alert>
   <div flex flex-col pl-5>
-    <el-checkbox v-model="notificationSetting.battleWin" label="战斗结束提醒" />
-    <el-checkbox v-model="notificationSetting.battleLose" label="队伍全灭提醒" />
-    <el-checkbox v-model="notificationSetting.replicardEvent" label="沙盒宝箱提醒" />
-    <el-checkbox v-model="notificationSetting.appearanceQuest" label="Hell提醒" />
-    <el-checkbox v-model="notificationSetting.itemGoal" label="底部道具数量达到目标" />
-    <el-checkbox v-model="notificationSetting.sampoFinish" label="探险完成提醒" />
-    <el-checkbox v-model="notificationSetting.checkUpdate" label="检测版本更新" />
-    <el-checkbox v-model="notificationSetting.pointReach" label="到线提醒" />
-    <el-checkbox v-model="notificationSetting.actionTrigger" label="动作触发提醒" />
-    <el-checkbox v-model="notificationSetting.cancelAutoUploadBuild" label="取消自动上传队伍配置" />
+    <el-checkbox v-model="notificationSetting.battleWin" label="Battle won" />
+    <el-checkbox v-model="notificationSetting.battleLose" label="Party wiped" />
+    <el-checkbox v-model="notificationSetting.replicardEvent" label="Replicard Sandbox chest" />
+    <el-checkbox v-model="notificationSetting.appearanceQuest" label="Hell quest appeared" />
+    <el-checkbox v-model="notificationSetting.itemGoal" label="Item goal reached" />
+    <el-checkbox v-model="notificationSetting.sampoFinish" label="Advyrnture complete" />
+    <el-checkbox v-model="notificationSetting.checkUpdate" label="Check for updates" />
+    <el-checkbox v-model="notificationSetting.pointReach" label="Honors target reached" />
+    <el-checkbox v-model="notificationSetting.actionTrigger" label="Action triggered" />
+    <el-checkbox v-model="notificationSetting.cancelAutoUploadBuild" label="Do not auto-upload party builds" />
   </div>
   <el-alert :closable="false">
     <template #title>
       <div w-268px flex items-center justify-between gap-2>
-        <el-tooltip content="在道具图片上右键加入掉落监控" placement="top-start">
+        <el-tooltip content="Right-click an item image to track its drops" placement="top-start">
           <div>
-            掉落提醒
+            Drop Alerts
           </div>
         </el-tooltip>
         <el-switch v-model="notificationSetting.targetItemDrop" />
@@ -99,9 +99,9 @@ onMounted(() => {
   <el-alert :closable="false">
     <template #title>
       <div w-268px>
-        <el-tooltip content="点击配置查询中的角色进行设置" placement="top-start">
+        <el-tooltip content="Click characters in Builds to set them" placement="top-start">
           <span>
-            未持有角色
+            Unowned Characters
           </span>
         </el-tooltip>
       </div>

@@ -14,11 +14,11 @@ const questId = computed(() => priority.slice(0, 6))
 
 function updateNpcFilter(masterId: number) {
   if (buildNpcFilter.value.includes(masterId)) {
-    ElMessage.success('已标记')
+    ElMessage.success('Marked')
   }
   else {
     buildNpcFilter.value.push(masterId)
-    ElMessage.success('标记为未持有')
+    ElMessage.success('Marked as not owned')
   }
 }
 
@@ -78,7 +78,7 @@ function goWiki(masterId: number) {
 
           <div class="text-12px text-#f2eee2" w-250px bg-black pb-2 pt-1 leading-none>
             <div v-if="(!npc.exlb || npc.exlb.length === 0) && (!npc.artifact || npc.artifact.length === 0) " text-center>
-              未读取该角色信息
+              Character data not loaded
             </div>
             <template v-for="exlb, idx in npc.exlb" :key="idx">
               <div class="prt-extra-lb-title" my-1>
@@ -99,7 +99,7 @@ function goWiki(masterId: number) {
 
             <template v-if="npc.artifact && npc.artifact?.length !== 0">
               <div class="prt-extra-lb-title" my-1>
-                アーティファクト
+                Artifact
               </div>
               <div flex flex-col gap-2>
                 <div v-for="skill, idx in npc.artifact" :key="idx" flex items-center justify-start gap-1 px-20px>

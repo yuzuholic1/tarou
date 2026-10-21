@@ -1,13 +1,13 @@
 /**
- * 全局类型声明文件
+ * Global type declarations
  *
- * 此文件已重构为模块化结构：
- * - modules/extension.d.ts - 扩展数据存储类型
- * - modules/source.d.ts - 游戏源数据类型
- * - modules/battle.d.ts - 战斗日志类型
- * - modules/party.d.ts - 队伍编成类型
- * - modules/api.d.ts - API 接口类型
- * - modules/index.d.ts - 模块入口文件
+ * This file has been split into modules:
+ * - modules/extension.d.ts - extension storage types
+ * - modules/source.d.ts - raw game data types
+ * - modules/battle.d.ts - battle log types
+ * - modules/party.d.ts - party types
+ * - modules/api.d.ts - API types
+ * - modules/index.d.ts - module entry point
  */
 
 /// <reference path="./modules/index.d.ts" />

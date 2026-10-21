@@ -8,7 +8,7 @@ export function useVersionCheck() {
     comment: '',
   })
 
-  // 比较版本号
+  // Compare version numbers
   function compareVersions(local: string, remote: string) {
     const localParts = local.split('.').map(Number)
     const remoteParts = remote.split('.').map(Number)
@@ -26,7 +26,7 @@ export function useVersionCheck() {
     return false
   }
 
-  // 检查更新
+  // Check for updates
   async function checkForUpdates() {
     try {
       const manifest = chrome.runtime.getManifest()
@@ -47,7 +47,7 @@ export function useVersionCheck() {
       }
     }
     catch (error) {
-      console.log('检查更新失败:', error)
+      console.log('Update check failed:', error)
     }
   }
 

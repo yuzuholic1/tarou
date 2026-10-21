@@ -12,7 +12,7 @@ function handleDetail(data: BattleRecord) {
   <div flex flex-col flex-wrap gap-10px>
     <el-card v-for="data, idx in battleRecord" :key="idx" w-300px body-style="padding: 5px !important">
       <el-descriptions size="small" direction="vertical" :column="3" border>
-        <el-descriptions-item label="副本" label-width="60" :rowspan="2" align="center">
+        <el-descriptions-item label="Quest" label-width="60" :rowspan="2" align="center">
           <div relative>
             <img h-44px w-44px :src="getBossImg('enemy', data.imgId!, 's')">
             <div v-if="data.isSolo" class="absolute inset-x-0">
@@ -22,16 +22,16 @@ function handleDetail(data: BattleRecord) {
             </div>
           </div>
         </el-descriptions-item>
-        <el-descriptions-item label="伤害" label-width="113" align="center">
+        <el-descriptions-item label="Damage" label-width="113" align="center">
           {{ data.damage }}
         </el-descriptions-item>
-        <el-descriptions-item label="操作时长/跑速" align="center">
+        <el-descriptions-item label="Time/Speed" align="center">
           {{ getRealTimeSpeed(data).set }}
         </el-descriptions-item>
-        <el-descriptions-item label="贡献" align="center">
+        <el-descriptions-item label="Honors" align="center">
           {{ data.point ? Math.floor(data.point).toLocaleString() : '-' }}
         </el-descriptions-item>
-        <el-descriptions-item label="回合数" align="center">
+        <el-descriptions-item label="Turns" align="center">
           {{ data.turn }}
         </el-descriptions-item>
       </el-descriptions>
@@ -42,7 +42,7 @@ function handleDetail(data: BattleRecord) {
 
         <div fc>
           <TheButton @click="handleDetail(data)">
-            详情
+            Details
           </TheButton>
         </div>
       </div>

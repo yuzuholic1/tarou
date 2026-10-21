@@ -29,7 +29,7 @@ onChange(async (files) => {
       }
     }
     markedUserList.value = [...mapData.values()]
-    ElMessage.success('导入成功')
+    ElMessage.success('Import successful')
   }
   catch (error) {
     ElMessage.error(String(error))
@@ -56,9 +56,9 @@ function handleImport() {
 
 function handleExport() {
   if (markedUserList.value.length === 0)
-    return ElMessage.info('没有数据可以导出')
+    return ElMessage.info('Nothing to export')
   const event = new Date()
-  const filename = `标记玩家 ${event.toLocaleDateString()}`
+  const filename = `Marked Players ${event.toLocaleDateString()}`
   downloadJSON(JSON.stringify(markedUserList.value, null, 2), filename)
 }
 
@@ -79,18 +79,18 @@ function downloadJSON(dataSet: string, filename: string) {
   <div sticky inset-x-0 top-0 z-999 h-10 flex items-center justify-between rounded bg-neutral-8 px-4 text-base>
     <div fc gap-2>
       <TheButton :loading="uploadBtnLoading" @click="handleImport">
-        导入
+        Import
       </TheButton>
 
       <TheButton @click="handleExport">
-        导出
+        Export
       </TheButton>
     </div>
 
-    <el-popconfirm title="清空操作无法恢复，确认清空吗?" width="300" @confirm="markedUserList = []">
+    <el-popconfirm title="Clearing cannot be undone. Clear all?" width="300" @confirm="markedUserList = []">
       <template #reference>
         <TheButton>
-          清空
+          Clear
         </TheButton>
       </template>
     </el-popconfirm>
@@ -104,17 +104,17 @@ function downloadJSON(dataSet: string, filename: string) {
             {{ user.id }}
           </el-link>
         </el-descriptions-item>
-        <el-descriptions-item label="昵称" width="150" align="center">
+        <el-descriptions-item label="Name" width="150" align="center">
           {{ user.name }}
         </el-descriptions-item>
-        <el-descriptions-item label="等级" width="100" align="center">
+        <el-descriptions-item label="Rank" width="100" align="center">
           {{ user.rank }}
         </el-descriptions-item>
-        <el-descriptions-item label="备注">
+        <el-descriptions-item label="Notes">
           <template #label>
             <div flex items-center justify-between>
               <div fc gap-10px>
-                备注 <el-rate v-model="user.rate" clearable size="small" />
+                Notes <el-rate v-model="user.rate" clearable size="small" />
               </div>
               <div i-carbon:trash-can icon-btn @click="markedUserList.splice(idx, 1)" />
             </div>

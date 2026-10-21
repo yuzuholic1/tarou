@@ -10,7 +10,7 @@ const client = new OSS({
 
 async function putFile(name: string, filePath: any) {
   const result = await client.put(name, filePath)
-  console.log('上传成功')
+  console.log('Upload succeeded')
   return result
 }
 

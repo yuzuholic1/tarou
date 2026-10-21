@@ -10,9 +10,9 @@ const articleIitemNum = computed(() => Object.values (eventInfo.value?.additiona
     <template #header>
       <div flex justify-between>
         <div>
-          剧情复刻{{ `( ${articleIitemNum} )` }}
+          Story Event Rerun{{ `( ${articleIitemNum} )` }}
         </div>
-        <el-tooltip content="最后更新时间" placement="top">
+        <el-tooltip content="Last updated" placement="top">
           {{ formatEventDate(eventInfo.updateTime) }}
         </el-tooltip>
       </div>

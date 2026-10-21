@@ -25,18 +25,18 @@ function handleDelete(index: number) {
       <div>
         <ElCheckboxGroup v-model="resultFilter.type">
           <ElCheckboxButton value="weapon">
-            武器
+            Weapon
           </ElCheckboxButton>
           <ElCheckboxButton value="summon">
-            召唤
+            Summon
           </ElCheckboxButton>
         </ElCheckboxGroup>
       </div>
       <ElTag v-if="summary.count" effect="dark" size="large" round>
-        {{ `总抽数: ${summary.count}(${summary.ssrNum}) SSR率: ${(summary.ssrNum / summary.count * 100).toFixed(1)}%` }}
+        {{ `Total Draws: ${summary.count}(${summary.ssrNum}) SSR Rate: ${(summary.ssrNum / summary.count * 100).toFixed(1)}%` }}
       </ElTag>
       <ElTag v-else type="info" effect="dark" size="large" round>
-        当前没有抽卡信息
+        No draw records yet
       </ElTag>
     </div>
     <ElScrollbar :max-height="height - 100">
@@ -47,12 +47,12 @@ function handleDelete(index: number) {
               <div fc gap-4>
                 <img w-200px :src="getGachaBanner(data.random_key)">
                 <TheButton class="invisible group-hover:visible" @click="handleDelete(index)">
-                  删除
+                  Delete
                 </TheButton>
               </div>
               <div flex flex-col items-end justify-center gap-10px>
                 <div>{{ `${data.service_start} - ${data.service_end}` }}</div>
-                <div>{{ `已抽: ${data.count}(${data.ssrList.length}) SSR率: ${(data.ssrList.length / data.count * 100).toFixed(1)}%` }}</div>
+                <div>{{ `Drawn: ${data.count}(${data.ssrList.length}) SSR Rate: ${(data.ssrList.length / data.count * 100).toFixed(1)}%` }}</div>
               </div>
             </div>
           </template>
@@ -68,7 +68,7 @@ function handleDelete(index: number) {
             </div>
             <div w-full fc>
               <ElTag v-if="data.ssrList.length === 0" type="info" effect="dark" round>
-                未抽到SSR
+                No SSRs drawn
               </ElTag>
             </div>
           </div>

@@ -143,7 +143,7 @@ function getNodePosition(position: number, size: number) {
             <img
               class="absolute inset-0 left-1/2 top-1/2 z-999 w-40px -translate-x-1/2 -translate-y-1/2"
               :src="getOfficialUrl(`/sp/arcarum3/assets/node_icon/${specialNode.icon}.png`)"
-              :alt="`特殊事件 ${specialNode.incidentId}`"
+              :alt="`Special Event ${specialNode.incidentId}`"
             >
             <div class="absolute inset-x-0 bottom-25px text-center">
               {{ specialNode.comment }}

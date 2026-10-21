@@ -12,13 +12,13 @@ const tabName = defineModel<string>({ default: 'damage' })
 <template>
   <ElCard v-if="player" w-300px shrink-0 body-style="padding: 5px !important">
     <ElTabs v-model="tabName" stretch>
-      <ElTabPane v-if="turn" label="角色状态" name="status">
+      <ElTabPane v-if="turn" label="Status" name="status">
         <PlayerStatus :player-info="player" :formation="formation" :turn="turn" />
       </ElTabPane>
-      <ElTabPane label="伤害统计" name="damage">
+      <ElTabPane label="Damage" name="damage">
         <DamageRecord :player-info="player" />
       </ElTabPane>
-      <ElTabPane label="承伤统计" name="damageTaken">
+      <ElTabPane label="Damage Taken" name="damageTaken">
         <DamageTaken :player-info="player" />
       </ElTabPane>
     </ElTabs>

@@ -716,7 +716,7 @@ declare module 'source' {
       hp: number
     }[]
     status_list?: DungeonScenarioStatus[]
-    // 传送点id
+    // Warp point ID
     warp_node_id?: number
     delete_node_ids?: number[]
     node_id?: number

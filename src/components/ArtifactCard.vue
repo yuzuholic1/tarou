@@ -39,14 +39,14 @@ const isTarget = computed(() => {
 
   if (ids.length > 0) {
     if (strictMode) {
-      // 严格模式：ids的技能集合必须是神器的技能集合的子集
+      // Strict mode: the selected skill ids must be a subset of the artifact's skills
       const artifactSkillIds = new Set<number>()
       for (const skillName of skillNameList) {
         const skill_id = Math.floor(artifact[skillName].skill_id / 10)
         artifactSkillIds.add(skill_id)
       }
 
-      // 检查 ids 中的每个技能是否都在神器的技能集合中
+      // Check every selected skill id exists on the artifact
       for (const skillId of ids) {
         if (!artifactSkillIds.has(skillId))
           return false
@@ -54,7 +54,7 @@ const isTarget = computed(() => {
       return true
     }
     else {
-      // 普通模式：只要任何一个技能在 ids 中即可
+      // Normal mode: any one matching skill is enough
       for (const skillName of skillNameList) {
         const skill_id = String(Math.floor(artifact[skillName].skill_id / 10))
         if (ids.includes(Number(skill_id)))
@@ -72,7 +72,7 @@ function getSkillName(skill_id: number) {
   if (!hitSkill)
     return ''
 
-  return language.value === 'zh' ? hitSkill.nameZh : hitSkill.name
+  return language.value === 'ja' ? hitSkill.name : hitSkill.nameEn
 }
 
 function getSkillQuality(skillName: SkillName) {
@@ -126,7 +126,7 @@ function isRecommendSkill(skill_id: number) {
           <div class="relative size-52px fc rotate-[-14deg] select-none border-2 border-red-6 rounded-full bg-red-5/6 text-14px text-red-7 tracking-[0.18em] shadow-[0_0_0_1px_rgba(255,255,255,0.18)_inset,0_3px_10px_rgba(127,29,29,0.18)]">
             <div class="absolute inset-3px border border-red-5/75 rounded-full" />
             <span class="translate-x-[2px]">
-              无用
+              Junk
             </span>
           </div>
         </div>

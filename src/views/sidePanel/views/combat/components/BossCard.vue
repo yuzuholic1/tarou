@@ -9,7 +9,7 @@ const countdownRef = ref<CountdownInstance>()
 
 function handleCopy(text: string) {
   if (copy(text))
-    ElMessage.success(`已复制救援码${text}`)
+    ElMessage.success(`Copied raid ID ${text}`)
 }
 </script>
 
@@ -55,22 +55,22 @@ function handleCopy(text: string) {
         {{ text }}
       </el-tag>
     </div>
-    <el-tooltip content="操作时长">
+    <el-tooltip content="Time Spent">
       <div absolute left-0 top-0 select-none>
         {{ formatTime(operationSecond) }}
       </div>
     </el-tooltip>
-    <el-tooltip v-if="currentRaid?.point" content="贡献" placement="top">
+    <el-tooltip v-if="currentRaid?.point" content="Honors" placement="top">
       <div absolute bottom-0 left-0 select-none>
         {{ Math.floor(currentRaid.point).toLocaleString() }}
       </div>
     </el-tooltip>
-    <el-tooltip v-if="battleInfo.bossInfo.shareId" content="救援码">
+    <el-tooltip v-if="battleInfo.bossInfo.shareId" content="Raid ID">
       <div absolute right-0 top-0 cursor-pointer hover:text-amber @click="handleCopy(battleInfo.bossInfo.shareId)">
         {{ battleInfo.bossInfo.shareId }}
       </div>
     </el-tooltip>
-    <el-tooltip v-if="battleInfo.bossInfo.limitNum !== 1" content="人数" placement="top">
+    <el-tooltip v-if="battleInfo.bossInfo.limitNum !== 1" content="Players" placement="top">
       <div absolute bottom-0 right-0>
         {{ `${battleInfo.bossInfo.fellow}/${battleInfo.bossInfo.limitNum}` }}
       </div>

@@ -1,94 +1,94 @@
 export const DUNGEON_NORMAL_NODE_LIST = [
-  { nodeType: 5, name: '事件' },
-  { nodeType: 2, name: '战斗' },
-  { nodeType: 6, name: '宝箱' },
-  { nodeType: 7, name: '恢复' },
-  { nodeType: 8, name: '商店' },
-  { nodeType: 9, name: '传送' },
-  { nodeType: 3, name: '强敌' },
-  { nodeType: 11, name: '超强敌' },
-  { nodeType: 4, name: '君临者' },
+  { nodeType: 5, name: 'Event' },
+  { nodeType: 2, name: 'Battle' },
+  { nodeType: 6, name: 'Treasure Chest' },
+  { nodeType: 7, name: 'Recovery' },
+  { nodeType: 8, name: 'Shop' },
+  { nodeType: 9, name: 'Teleport' },
+  { nodeType: 3, name: 'Hard Foe' },
+  { nodeType: 11, name: 'Very Hard Foe' },
+  { nodeType: 4, name: 'Guardian' },
   { nodeType: 1, name: 'Boss' },
 ]
 
 export const DUNGEON_SPECIAL_NODE_LIST = [
-  { incidentId: 1, icon: '10_guru', comment: '邪教主' },
-  { incidentId: 2, icon: '10_fanatic', comment: '狂信者1' },
-  { incidentId: 3, icon: '10_fanatic', comment: '狂信者2' },
-  { incidentId: 5, icon: '10_teleport_glow', comment: '浮游城传送' },
-  { incidentId: 6, icon: '10_teleport', comment: '浮游城传送' },
-  { incidentId: 7, icon: '10_teleport', comment: '浮游城传送' },
-  { incidentId: 8, icon: '10_research', comment: '浮游城研究者' },
-  { incidentId: 4, icon: '10_incident', comment: '浮游城', hasBackground: true },
-  { incidentId: 9, icon: '10_incident', comment: '时停塔', hasBackground: true },
-  { incidentId: 10, icon: '10_incident', comment: '花园', hasBackground: true },
-  { incidentId: 11, icon: '10_incident', comment: '监狱', hasBackground: true },
-  { incidentId: 12, icon: '10_incident', comment: '温泉', hasBackground: true },
-  { incidentId: 13, icon: '10_incident', comment: '铁匠', hasBackground: true },
-  { incidentId: 14, icon: '10_incident', comment: '堡垒', hasBackground: true },
-  { incidentId: 15, icon: '10_incident', comment: '教堂', hasBackground: true },
-  { incidentId: 16, icon: '10_incident', comment: '洞穴', hasBackground: true },
-  { incidentId: 17, icon: '10_incident', comment: '石像', hasBackground: true },
-  { incidentId: 18, icon: '10_incident', comment: '村落', hasBackground: true },
+  { incidentId: 1, icon: '10_guru', comment: 'Cult Leader' },
+  { incidentId: 2, icon: '10_fanatic', comment: 'Fanatic 1' },
+  { incidentId: 3, icon: '10_fanatic', comment: 'Fanatic 2' },
+  { incidentId: 5, icon: '10_teleport_glow', comment: 'Floating Castle Teleport' },
+  { incidentId: 6, icon: '10_teleport', comment: 'Floating Castle Teleport' },
+  { incidentId: 7, icon: '10_teleport', comment: 'Floating Castle Teleport' },
+  { incidentId: 8, icon: '10_research', comment: 'Floating Castle Researcher' },
+  { incidentId: 4, icon: '10_incident', comment: 'Floating Castle', hasBackground: true },
+  { incidentId: 9, icon: '10_incident', comment: 'Timeless Tower', hasBackground: true },
+  { incidentId: 10, icon: '10_incident', comment: 'Garden', hasBackground: true },
+  { incidentId: 11, icon: '10_incident', comment: 'Prison', hasBackground: true },
+  { incidentId: 12, icon: '10_incident', comment: 'Hot Spring', hasBackground: true },
+  { incidentId: 13, icon: '10_incident', comment: 'Blacksmith', hasBackground: true },
+  { incidentId: 14, icon: '10_incident', comment: 'Fortress', hasBackground: true },
+  { incidentId: 15, icon: '10_incident', comment: 'Church', hasBackground: true },
+  { incidentId: 16, icon: '10_incident', comment: 'Cave', hasBackground: true },
+  { incidentId: 17, icon: '10_incident', comment: 'Statue', hasBackground: true },
+  { incidentId: 18, icon: '10_incident', comment: 'Village', hasBackground: true },
 ]
 
 export const statusSummaryOptions = [
   {
-    label: '全种族',
+    label: 'All Races',
     status: [
       { id: 60, value: 1 },
     ],
   },
   {
-    label: '全得意',
+    label: 'All Specialties',
     status: [
       { id: 59, value: 1 },
     ],
   },
   {
-    label: '弱点攻击',
+    label: 'Weak Point Attack',
     status: [
       { id: 31, value: 1 },
     ],
   },
   {
-    label: '必中',
+    label: 'Sure Hit',
     status: [
       { id: 32, value: 1 },
     ],
   },
   {
-    label: '不死身',
+    label: 'Guts',
     status: [
       { id: 42, value: 1 },
     ],
   },
   {
-    label: '再使用',
+    label: 'Skill Reuse',
     status: [
       { id: 81, value: 1 },
     ],
   },
   {
-    label: '召唤CD1',
+    label: 'Summon CD 1',
     status: [
       { id: 83, value: 1 },
     ],
   },
   {
-    label: 'hit减cd',
+    label: 'CD Cut on Hit',
     status: [
       { id: 92, value: 1 },
     ],
   },
   {
-    label: '奥义减cd',
+    label: 'CD Cut on C.A.',
     status: [
       { id: 75, value: 1 },
     ],
   },
   {
-    label: '加护',
+    label: 'Blessing',
     status: [
       { id: 24, value: 60 },
       { id: 79, value: 180 },

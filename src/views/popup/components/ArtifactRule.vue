@@ -2,7 +2,7 @@
 import { artifactSkillLevelList, artifactSkillList } from '~/constants/artifact'
 import { artifactRule } from '~/logic'
 
-const language = ref('zh')
+const language = ref('en')
 const skillTabs = ['skill1', 'skill2', 'skill3'] as const
 
 const artifactGuideCollapse = ref([])
@@ -22,23 +22,23 @@ function getSkillLevelType(skillId: number, level: number) {
 
 <template>
   <el-collapse v-model="artifactGuideCollapse" m-auto w-600px>
-    <el-collapse-item name="rules" title="规则说明">
+    <el-collapse-item name="rules" title="How Rules Work">
       <div flex flex-col gap-3 text-14px text-neutral-4>
         <div>
-          所有技能分成 3 档：有用、无用、锁定
+          Every skill is rated one of 3 levels: Keep, Junk or Lock
         </div>
         <div>
-          当一个神器没有锁定技能，且无用技能数量多于
+          An artifact is marked as junk when it has no Lock skills and more than
           <el-input-number v-model="artifactRule.limit" :step="1" size="small" style="width: 50px;" :controls="false" />
-          个时，标记为无用。
+          Junk skills.
         </div>
       </div>
     </el-collapse-item>
   </el-collapse>
-  <el-card v-for="tab, i in skillTabs" :key="tab" :label="`${'I'.repeat(i + 1)}类技能`" m-auto mt-10px w-600px>
+  <el-card v-for="tab, i in skillTabs" :key="tab" :label="`Skill Group ${'I'.repeat(i + 1)}`" m-auto mt-10px w-600px>
     <template #header>
       <div fc>
-        {{ `${'I'.repeat(i + 1)}类技能` }}
+        {{ `Skill Group ${'I'.repeat(i + 1)}` }}
       </div>
     </template>
     <div flex flex-col gap-2 overflow-auto>
@@ -50,7 +50,7 @@ function getSkillLevelType(skillId: number, level: number) {
       >
         <div min-w-0>
           <div text-14px>
-            {{ language === 'zh' ? skill.nameZh : skill.name }}
+            {{ language === 'ja' ? skill.name : skill.nameEn }}
           </div>
         </div>
         <div fc>

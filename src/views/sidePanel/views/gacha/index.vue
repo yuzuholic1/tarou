@@ -29,7 +29,7 @@ function copyGachaInfo() {
     ratio2: gachaInfo.value.ratio2,
   }
   if (copy(JSON.stringify(info, null, 2)))
-    ElMessage.success(`已复制抽卡概率`)
+    ElMessage.success(`Copied draw rates`)
 }
 
 function gacha(ratioType: 'ratio1' | 'ratio2') {
@@ -65,12 +65,12 @@ function gacha10() {
 
 function draw(times: number) {
   if (!gachaInfo.value.id || !gachaInfo.value.ratio1 || !gachaInfo.value.ratio2) {
-    ElMessage.error('卡池数据未获取')
+    ElMessage.error('Banner data not loaded')
     return
   }
 
   if (gachaInfo.value.id !== gachaInfo.value.ratio1.id || gachaInfo.value.id !== gachaInfo.value.ratio2.id) {
-    ElMessage.error('卡池数据不一致')
+    ElMessage.error('Banner data mismatch')
     return
   }
   animationVisible.value = true
@@ -110,7 +110,7 @@ function closeAnimation() {
         <div>{{ `${ssrCount}(${count ? ((ssrCount / count) * 100).toFixed(2) : 0}%)` }}</div>
       </div>
       <TheButton @click="reset">
-        重置
+        Reset
       </TheButton>
     </div>
     <div class="h-140px fc flex-col gap-4px rounded p-4px ring-1 ring-neutral-7">
@@ -141,7 +141,7 @@ function closeAnimation() {
       <template #header>
         <div v-if="gachaInfo.id" flex items-center justify-between text-12px>
           <div>
-            <el-tooltip :content="`编号: ${gachaInfo.id}`" placement="top">
+            <el-tooltip :content="`ID: ${gachaInfo.id}`" placement="top">
               <img w-100px :src="getGachaBanner(gachaInfo.randomKey!)" @click="copyGachaInfo">
             </el-tooltip>
           </div>
@@ -151,16 +151,16 @@ function closeAnimation() {
           </div>
         </div>
         <div v-else text-center>
-          未获取卡池信息
+          No banner data yet
         </div>
       </template>
       <div text-12px>
         <div flex items-center justify-between>
-          <div>{{ `卡池概率1(${gachaInfo.ratio1?.id || '未获取'})` }}</div>
+          <div>{{ `Rates 1 (${gachaInfo.ratio1?.id || 'not loaded'})` }}</div>
           <div>{{ gachaInfo.ratio1 ? useDateFormat(gachaInfo.ratio1.updateTime, 'MM-DD HH:mm') : '' }}</div>
         </div>
         <div flex items-center justify-between>
-          <div>{{ `卡池概率2(${gachaInfo.ratio2?.id || '未获取'})` }}</div>
+          <div>{{ `Rates 2 (${gachaInfo.ratio2?.id || 'not loaded'})` }}</div>
           <div>{{ gachaInfo.ratio2 ? useDateFormat(gachaInfo.ratio2.updateTime, 'MM-DD HH:mm') : '' }}</div>
         </div>
       </div>

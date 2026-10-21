@@ -95,5 +95,5 @@ function isWeaponVisible(weapon: OdiantWeapon) {
     </div>
   </div>
 
-  <el-result v-if="idList.length === 0" icon="info" sub-title="当前界面不含有禁祸武器" />
+  <el-result v-if="idList.length === 0" icon="info" sub-title="No Odious weapons on this screen" />
 </template>

@@ -38,11 +38,11 @@ function handleCommand(command: string | number | object) {
       openPopupWindow('ArtifactRule')
       break
     case 'lang':
-      language.value = language.value === 'zh' ? 'ja' : 'zh'
+      language.value = language.value === 'ja' ? 'en' : 'ja'
       break
     case 'copy':
       if (copy(JSON.stringify(artifactRule.value)))
-        ElMessage.success(`已复制当前规则`)
+        ElMessage.success('Current rules copied')
       break
     case 'paste':
       textarea.value = ''
@@ -59,18 +59,18 @@ function getSkillName(filterId: number) {
   if (!hitSkill)
     return ''
 
-  return language.value === 'zh' ? hitSkill.nameZh : hitSkill.name
+  return language.value === 'ja' ? hitSkill.name : hitSkill.nameEn
 }
 
 function onPasteSubmit() {
   try {
     artifactRule.value = JSON.parse(textarea.value)
     inputVisible.value = false
-    ElMessage.success('导入成功')
+    ElMessage.success('Rules imported')
   }
   catch (error: any) {
     console.log(error)
-    ElMessage.error('数据异常，复制失败')
+    ElMessage.error('Invalid data, import failed')
   }
 }
 </script>
@@ -85,17 +85,17 @@ function onPasteSubmit() {
             :class="onlyUnnecessary
               ? 'shadow-[0_0_3px_3px_#059669]'
               : 'ring-1 ring-neutral-6'"
-            title="仅显示无用神器"
+            title="Show junk artifacts only"
             @click="onlyUnnecessary = !onlyUnnecessary"
           >
-            清理模式
+            Cleanup Mode
           </button>
 
           <div fc gap-2>
             <el-popover trigger="click" effect="dark" placement="bottom" width="320" popper-style="padding: 0px;">
               <template #reference>
-                <TheButton title="筛选神器技能">
-                  筛选
+                <TheButton title="Filter artifact skills">
+                  Filter
                 </TheButton>
               </template>
 
@@ -107,11 +107,11 @@ function onPasteSubmit() {
                     : 'ring-1 ring-neutral-4'"
                   @click="strictMode = !strictMode"
                 >
-                  严格模式
+                  Strict Mode
                 </button>
 
-                <TheButton title="重置选项" color="#303133" @click="ids.clear(); strictMode = false; onlyUnnecessary = false">
-                  重置
+                <TheButton title="Reset options" color="#303133" @click="ids.clear(); strictMode = false; onlyUnnecessary = false">
+                  Reset
                 </TheButton>
               </div>
               <el-scrollbar height="500">
@@ -132,7 +132,7 @@ function onPasteSubmit() {
                         : 'ring-1 ring-neutral-4'"
                       @click="handleCheckFilter(ids, item.skillId)"
                     >
-                      {{ language === 'zh' ? item.nameZh : item.name }}
+                      {{ language === 'ja' ? item.name : item.nameEn }}
                     </div>
                   </div>
                 </div>
@@ -140,27 +140,27 @@ function onPasteSubmit() {
             </el-popover>
             <el-dropdown @command="handleCommand">
               <TheButton>
-                操作
+                Actions
               </TheButton>
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-dropdown-item command="box">
-                    弹窗展示
+                    Open in Window
                   </el-dropdown-item>
                   <el-dropdown-item command="rule">
-                    配置规则
+                    Configure Rules
                   </el-dropdown-item>
                   <el-dropdown-item command="lang">
-                    切换语言
+                    Switch Language (EN/JP)
                   </el-dropdown-item>
                   <el-dropdown-item command="copy">
-                    复制规则
+                    Copy Rules
                   </el-dropdown-item>
                   <el-dropdown-item command="paste">
-                    导入规则
+                    Import Rules
                   </el-dropdown-item>
                   <el-dropdown-item command="share">
-                    分享
+                    Share
                   </el-dropdown-item>
                 </el-dropdown-menu>
               </template>
@@ -196,10 +196,10 @@ function onPasteSubmit() {
       <el-input v-model="textarea" :rows="6" type="textarea" />
       <template #footer>
         <TheButton @click="inputVisible = false">
-          取消
+          Cancel
         </TheButton>
         <TheButton @click="onPasteSubmit">
-          确认
+          Confirm
         </TheButton>
       </template>
     </el-dialog>

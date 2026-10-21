@@ -9,7 +9,7 @@ export function setupWebRequestListener() {
   const { checkUser, sendDrop, sendBuild } = useUser()
 
   chrome.webRequest.onCompleted.addListener((details) => {
-    // 记录掉落结果
+    // Record drop results
     if (/\/result(?:multi)?\/content\/index/.test(details.url)) {
       checkUser(details.url)
       const battleId = details.url.match(/\d+/g)![0]
@@ -40,7 +40,7 @@ export function setupWebRequestListener() {
       })
     }
 
-    // 记录历史记录里的掉落结果
+    // Record drop results from battle history
     if (/\/result(?:multi)?\/content\/detail/.test(details.url)) {
       checkUser(details.url)
       const battleId = details.url.match(/\d+/g)![0]
@@ -72,7 +72,7 @@ export function setupWebRequestListener() {
       })
     }
 
-    // 记录友招信息
+    // Record support summon info
     if (details.url.includes('/profile/content/index')) {
       const searchParams = new URLSearchParams(details.url)
       const myUid = searchParams.get('uid') || ''
@@ -113,7 +113,7 @@ export function setupWebRequestListener() {
       })
     }
 
-    // 记录角色信息
+    // Record character info
     if (details.url.includes('/npczenith/content/index')) {
       sendMessage('getNpczenith', null, { context: 'content-script', tabId: details.tabId }).then((res) => {
         if (!res?.domStr)
@@ -149,7 +149,7 @@ export function setupWebRequestListener() {
       })
     }
 
-    // 记录首页信息
+    // Record home page info
     if (details.url.includes('/user/content/index')) {
       sendMessage('getMypage', null, { context: 'content-script', tabId: details.tabId }).then((res) => {
         if (!res?.domStr)
@@ -175,7 +175,7 @@ export function setupWebRequestListener() {
           total: parseNumberLimit($('.prt-follow-point-box').text()),
         }
 
-        // 获取当前进行中的活动信息
+        // Fetch info on the currently running event
         const currentEventList: string[] = []
         $('.btn-global-banner').each((index, element) => {
           const dataHref = $(element).data('href') as string | undefined

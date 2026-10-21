@@ -1,6 +1,6 @@
 /**
- * 全局模块声明入口文件
- * 引用所有拆分出来的全局模块
+ * Entry point for global module declarations
+ * References every split-out global module
  */
 
 /// <reference path="./extension.d.ts" />

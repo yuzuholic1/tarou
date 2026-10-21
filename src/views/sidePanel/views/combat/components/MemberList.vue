@@ -50,7 +50,7 @@ function handleMark(member: MemberInfo) {
   if (hit) {
     hit.name = member.nickname
     hit.rank = member.userRank
-    ElMessage.info('该玩家已标记，更新玩家昵称与等级')
+    ElMessage.info('Player already marked; updated name and rank')
   }
   else {
     markedUserList.value.unshift({
@@ -58,9 +58,9 @@ function handleMark(member: MemberInfo) {
       id: member.userId,
       rank: member.userRank,
       rate: 0,
-      comment: `标记于${useDateFormat(Date.now(), 'YYYY-MM-DD HH:mm:ss').value}`,
+      comment: `Marked on ${useDateFormat(Date.now(), 'YYYY-MM-DD HH:mm:ss').value}`,
     })
-    ElMessage.success('成功标记该玩家')
+    ElMessage.success('Player marked')
   }
 }
 </script>

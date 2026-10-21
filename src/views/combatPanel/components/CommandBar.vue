@@ -6,22 +6,22 @@ import { combatPanelSetting } from '~/logic'
 const { position } = defineProps<{ position: { x: number, y: number } }>()
 
 const panelList = [
-  { key: 'RoomInfo', label: '综合信息' },
-  { key: 'BossState', label: '怪物信息' },
-  { key: 'NpcCondition', label: '角色状态' },
-  { key: 'InterruptText', label: '试炼条件' },
-  { key: 'ActionList', label: '操作记录' },
-  { key: 'MemberList', label: '玩家列表' },
-  { key: 'DamageRecord', label: '伤害统计' },
-  { key: 'DamageTaken', label: '承伤统计' },
-  { key: 'NpcCount', label: '其他统计' },
+  { key: 'RoomInfo', label: 'Overview' },
+  { key: 'BossState', label: 'Boss Info' },
+  { key: 'NpcCondition', label: 'Character Status' },
+  { key: 'InterruptText', label: 'Omen Conditions' },
+  { key: 'ActionList', label: 'Action Log' },
+  { key: 'MemberList', label: 'Players' },
+  { key: 'DamageRecord', label: 'Damage Dealt' },
+  { key: 'DamageTaken', label: 'Damage Taken' },
+  { key: 'NpcCount', label: 'Other Stats' },
 ] as const
 
 const switchDialogVisible = ref(false)
 
 const commandList = [
-  { key: 'switch', label: '开关面板', icon: 'carbon:switcher', handle: handleSwitchPanel },
-  { key: 'reset', label: '重置位置', icon: 'carbon:reset', handle: handleResetPosition },
+  { key: 'switch', label: 'Toggle Panels', icon: 'carbon:switcher', handle: handleSwitchPanel },
+  { key: 'reset', label: 'Reset Position', icon: 'carbon:reset', handle: handleResetPosition },
 ]
 
 const { width, height } = useWindowSize({ type: 'outer' })
@@ -37,12 +37,12 @@ function handleSwitchPanel() {
 
 function handleResetPosition() {
   ElMessageBox.confirm(
-    '确认重置所有面板位置',
-    '通知',
+    'Reset all panel positions?',
+    'Notice',
     {
       dangerouslyUseHTMLString: true,
-      confirmButtonText: '确认',
-      cancelButtonText: '取消',
+      confirmButtonText: 'Confirm',
+      cancelButtonText: 'Cancel',
       type: 'warning',
     },
   )
@@ -90,7 +90,7 @@ function handleResetPosition() {
     </div>
   </UseDraggable>
 
-  <el-dialog v-model="switchDialogVisible" title="开关面板" :center="true" width="200">
+  <el-dialog v-model="switchDialogVisible" title="Toggle Panels" :center="true" width="200">
     <div class="flex flex-col gap-4px">
       <el-checkbox v-for="panel in panelList" :key="panel.key" v-model="combatPanelSetting[panel.key].visible" :label="panel.label" />
     </div>

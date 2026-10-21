@@ -14,16 +14,16 @@ function reset() {
     <template #header>
       <div flex justify-between>
         <div fc gap-2>
-          <div>{{ `攒井第${dayjs().diff(dayjs.unix(saveStoneDate), "day")}天` }}</div>
-          <div i-carbon:document icon-btn title="查看抽卡记录" @click="openPopupWindow('GachaRecord')" />
-          <div i-carbon:reset icon-btn title="重置天数" @click="reset" />
+          <div>{{ `Spark saving: day ${dayjs().diff(dayjs.unix(saveStoneDate), "day")}` }}</div>
+          <div i-carbon:document icon-btn title="View draw history" @click="openPopupWindow('GachaRecord')" />
+          <div i-carbon:reset icon-btn title="Reset day count" @click="reset" />
         </div>
         <div fc text-orange-600 font-bold>
           <div v-if="totalStone >= 90000">
-            {{ `${Math.floor(totalStone / 90000)}井` }}
+            {{ `${Math.floor(totalStone / 90000)} sparks` }}
           </div>
           <div v-if="Math.floor((totalStone % 90000) / 300) !== 0">
-            {{ `${Math.floor((totalStone % 90000) / 300)}抽` }}
+            {{ `${Math.floor((totalStone % 90000) / 300)} draws` }}
           </div>
         </div>
       </div>

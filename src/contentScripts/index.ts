@@ -1,17 +1,17 @@
 import { onMessage, sendMessage } from 'webext-bridge/content-script'
 
 (() => {
-  // 获取掉落数据
+  // Capture drop data
   onMessage('getBattleResult', () => {
     return new Promise((resolve) => {
       const start = setInterval(() => {
         if (!/\/#result(?:_multi)?\/\d+/.test(document.URL)) {
-          console.log('战斗结算检测中断', document.URL)
+          console.log('Battle results detection aborted', document.URL)
           clearInterval(start)
           resolve({})
         }
 
-        console.log('监测到结算')
+        console.log('Battle results detected')
         const targetEl = document.querySelector('.prt-item-list')
 
         if (targetEl) {
@@ -22,17 +22,17 @@ import { onMessage, sendMessage } from 'webext-bridge/content-script'
     })
   })
 
-  // 获取历史战斗掉落数据
+  // Capture drop data from battle history
   onMessage('getBattleHistoryResult', () => {
     return new Promise((resolve) => {
       const start = setInterval(() => {
         if (!document.URL.includes('#result_multi/detail')) {
-          console.log('历史战斗结算检测中断', document.URL)
+          console.log('History results detection aborted', document.URL)
           clearInterval(start)
           resolve({})
         }
 
-        console.log('监测到历史结算')
+        console.log('History results detected')
         const targetEl = document.querySelector('.prt-result-detail')
 
         if (targetEl) {
@@ -43,17 +43,17 @@ import { onMessage, sendMessage } from 'webext-bridge/content-script'
     })
   })
 
-  // 获取友招信息
+  // Capture support summon info
   onMessage('getSupportSummon', () => {
     return new Promise((resolve) => {
       const start = setInterval(() => {
         if (!document.URL.includes('#profile')) {
-          console.log('主页检测中断', document.URL)
+          console.log('Profile page detection aborted', document.URL)
           clearInterval(start)
           resolve({})
         }
 
-        console.log('监测到主页')
+        console.log('Profile page detected')
         const targetEl = document.querySelector('.cnt-profile')
 
         if (targetEl) {
@@ -64,17 +64,17 @@ import { onMessage, sendMessage } from 'webext-bridge/content-script'
     })
   })
 
-  // 获取角色信息
+  // Capture character info
   onMessage('getNpczenith', () => {
     return new Promise((resolve) => {
       const start = setInterval(() => {
         if (!document.URL.includes('#zenith')) {
-          console.log('角色检测中断', document.URL)
+          console.log('Character detection aborted', document.URL)
           clearInterval(start)
           resolve({})
         }
 
-        console.log('监测到角色详情')
+        console.log('Character details detected')
         const targetEl = document.querySelector('div.cnt-zenith.npc')
 
         if (targetEl) {
@@ -85,17 +85,17 @@ import { onMessage, sendMessage } from 'webext-bridge/content-script'
     })
   })
 
-  // 获取首页信息
+  // Capture home page info
   onMessage('getMypage', () => {
     return new Promise((resolve) => {
       const start = setInterval(() => {
         if (!document.URL.includes('#mypage')) {
-          console.log('首页检测中断', document.URL)
+          console.log('Home page detection aborted', document.URL)
           clearInterval(start)
           resolve({})
         }
 
-        console.log('监测到主页')
+        console.log('Home page detected')
         const targetEl = document.querySelector('#status-accordion-wrapper')
         const contentEl = document.querySelector('.contents')
 

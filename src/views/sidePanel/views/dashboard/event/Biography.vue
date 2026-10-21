@@ -10,16 +10,16 @@ const articleIitemNum = computed(() => Object.values (eventInfo.value?.additiona
     <template #header>
       <div flex justify-between>
         <div>
-          剧情活动{{ `( ${articleIitemNum} )` }}
+          Story Event{{ `( ${articleIitemNum} )` }}
         </div>
-        <el-tooltip content="最后更新时间" placement="top">
+        <el-tooltip content="Last updated" placement="top">
           {{ formatEventDate(eventInfo.updateTime) }}
         </el-tooltip>
       </div>
     </template>
     <div flex flex-col gap-3 text-12px>
       <MissionList :mission-list="eventInfo.mission" />
-      <el-alert v-if="eventInfo.mission.length === 0" title="活动任务暂未开启" type="info" :center="true" :closable="false" />
+      <el-alert v-if="eventInfo.mission.length === 0" title="Event missions not available yet" type="info" :center="true" :closable="false" />
     </div>
   </el-card>
 </template>
